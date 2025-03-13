@@ -1,0 +1,6 @@
+@DKey.WenApiExampls.ControllerService_HostAddress = http://localhost:5134
+
+GET {{DKey.WenApiExampls.ControllerService_HostAddress}}/games/
+Accept: application/json
+
+###

@@ -1,0 +1,6 @@
+@DKey.WebApiExamples.SimpleHost_HostAddress = http://localhost:5083
+
+GET {{DKey.WebApiExamples.SimpleHost_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

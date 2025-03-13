@@ -1,0 +1,6 @@
+@DKey.WebApiExamples.MinimalWebApiService_HostAddress = http://localhost:5130
+
+GET {{DKey.WebApiExamples.MinimalWebApiService_HostAddress}}/games/
+Accept: application/json
+
+###
