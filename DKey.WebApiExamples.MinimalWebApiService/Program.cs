@@ -62,4 +62,39 @@ app.MapDelete("/games/{id}", async (Guid id, IGameRepository repository) =>
     return result ? Results.NoContent() : Results.NotFound();
 });
 
+
+// Example method using HttpRequest directly
+app.MapPost("/process-request", async (HttpRequest request, IGameRepository repository) =>
+{
+    try
+    {
+        // Access request headers
+        var userAgent = request.Headers["User-Agent"].ToString();
+
+        // Read the request body manually if needed
+        GameDto? gameDto = await request.ReadFromJsonAsync<GameDto>();
+
+        if (gameDto == null)
+        {
+            return Results.BadRequest("Invalid game data");
+        }
+
+        // Process the data
+        var game = new Game(gameDto.Name, gameDto.Score, gameDto.Comment);
+        await repository.AddAsync(game);
+
+        // Return response with custom headers
+        var response = Results.Created($"/games/{game.Id}", game);
+
+        // You can also log request information
+        Console.WriteLine($"Request processed from: {userAgent}");
+
+        return response;
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem($"Error processing request: {ex.Message}");
+    }
+});
+
 app.Run();

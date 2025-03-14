@@ -18,7 +18,6 @@ builder.Services.AddScoped<IGameRepository, GameRepository>();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
 
 // Map controller routes
 app.MapControllers();
